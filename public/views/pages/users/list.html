@@ -1,0 +1,109 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+
+<!--dynamic table-->
+<link href="/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+<link href="/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+<link rel="stylesheet" href="/lib/data-tables/DT_bootstrap.css" />
+
+<div tt-controller="app/users/index" tt-init="initList">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    用户管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">用户管理</a>
+        </li>
+        <li class="active"> 用户列表 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    用户列表
+                    <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="/users/new">
+                            新增用户 <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">更多 <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#"> 打印 </a></li>
+                                <li><a href="#"> 另存为PDF </a></li>
+                                <li><a href="#"> 导出到Excel </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="table  table-hover general-table" id="userList">
+                        <thead>
+                            <tr>
+                                <th> 名称</th>
+                                <th> 头像</th>
+                                <th> 手机</th>
+                                <th> 昵称</th>
+                                <th> 角色</th>
+                                <th> 上次登录时间</th>
+                                <th> 显示/隐藏</th>
+                                <th> 操作</th>
+                            </tr>
+                        </thead>
+                        <tbody tt-repeat="item in users">
+                        {% raw %}
+                            <tr data-id="{{item.id}}">
+                                <td><a href="/users/{{item.id}}">{{item.username}}</a></td>
+                                 <td><img src="{{item.avatar}}" width="30px" height="30px" alt="{{item.username}}"></img></td>
+                                <td class="hidden-phone">{{item.phone}}</td>
+                                <td>{{item.email}} </td>
+                                <td><span class="label label-info label-mini">{% if item.role == 2 %}用户 {% else %} 供应商{% endif %}</span></td>
+                                <td>{{item.last_login_time}} </td>
+                                <td><span class="label label-warning label-mini">{% if item.is_show %}显示 {% else %} 隐藏{% endif %}</span></td>
+                                <td>
+                                    <a href="/users/{{item.id}}"><i class="fa fa-eye"></i></a>
+                                    <a href="/users/{{item.id}}/edit"><i class="fa fa-edit"></i></a>
+                                    <a href="javascript:;" tt-click="deleteUserDialog"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                        {% endraw %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="dataTables_paginate paging_bootstrap pagination">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/users/index'], function(modernizr, bootstrap, userController){
+            userController.initList();
+        });
+    });
+</script>
+{% endblock %}

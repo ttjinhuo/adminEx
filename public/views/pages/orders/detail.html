@@ -1,0 +1,61 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<div tt-controller="app/orders/index" tt-init="initDetail">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    订单管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">订单详情</a>
+        </li>
+        <li class="active" tt-bind="order.sn"> ［商品名称］ </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <ul class="p-info">
+                                <li>
+                                    <div class="title">订单编号</div>
+                                    <div class="desk" tt-bind="order.sn"></div>
+                                </li>
+                                <li>
+                                    <div class="title">订单金额</div>
+                                    <div class="desk" tt-bind="order.amount"></div>
+                                </li>
+                                <li>
+                                    <div class="title">联系方式</div>
+                                    <div class="desk" tt-bind="supplier.phone"></div>
+                                </li>
+                                <li>
+                                    <div class="title">地址</div>
+                                    <div class="desk" tt-bind="supplier.location"></div>
+                                </li>
+                                <li>
+                                    <div class="title">规模</div>
+                                    <div class="desk" tt-bind="supplier.scale"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</div>
+</div>
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/orders/index'], function(a, b, controller){
+            controller.initDetail();
+        });
+    });
+</script>
+{% endblock %}

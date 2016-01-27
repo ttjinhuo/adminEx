@@ -1,0 +1,115 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<div tt-controller="app/suppliers/index" tt-init="initDetail">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    供应商管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">供应商详情</a>
+        </li>
+        <li class="active" tt-bind="supplier.name"> ［商品名称］ </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-pic text-center">
+                                <img alt="" src="/images/photos/user1.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <ul class="p-info">
+                                <li>
+                                    <div class="title">供应商名称</div>
+                                    <div class="desk" tt-bind="supplier.name"></div>
+                                </li>
+                                <li>
+                                    <div class="title">经营范围</div>
+                                    <div class="desk" tt-bind="supplier.scope"></div>
+                                </li>
+                                <li>
+                                    <div class="title">联系方式</div>
+                                    <div class="desk" tt-bind="supplier.phone"></div>
+                                </li>
+                                <li>
+                                    <div class="title">地址</div>
+                                    <div class="desk" tt-bind="supplier.location"></div>
+                                </li>
+                                <li>
+                                    <div class="title">规模</div>
+                                    <div class="desk" tt-bind="supplier.scale"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-desk">
+                                <h1>产品名称</h1>
+                                <span class="designation">PRODUCT DESIGNER (UX / UI / Visual Interaction)</span>
+                                <p>
+                                I have 10 years of experience designing for the web, and specialize in the areas of user interface design, interaction design, visual design and prototyping. I’ve worked with notable startups including Pearl Street Software.
+                                </p>
+                                <div class="blog-tags">
+                                    TAGS <a href="#">photoshop</a> <a href="#">illustrator</a> <a href="#">adobe</a> <a href="#">theme</a>
+                                    <div class="pull-right tag-social">
+                                        <a href="#" class="btn btn-share pull-right">Share</a>
+                                        <ul class="pull-right">
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/suppliers/index'], function(a, b, supplierController){
+            supplierController.initDetail();
+        });
+    });
+</script>
+{% endblock %}

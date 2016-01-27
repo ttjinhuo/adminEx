@@ -1,0 +1,102 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+
+<!--dynamic table-->
+<link href="/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+<link href="/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+<link rel="stylesheet" href="/lib/data-tables/DT_bootstrap.css" />
+
+<div tt-controller="app/cats/index" tt-init="initList">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    商品管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">商品管理</a>
+        </li>
+        <li class="active"> 商品二级类目 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <span tt-bind="cat.cat_name"></span>
+                    <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <button id="editable-sample_new" class="btn btn-primary" tt-click="editSpec">
+                            新增 <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">更多 <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#"> 打印 </a></li>
+                                <li><a href="#"> 另存为PDF </a></li>
+                                <li><a href="#"> 导出到Excel </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="table  table-hover general-table" id="userList">
+                        <thead>
+                            <tr>
+                                <th> 名称</th>
+                                <th> 一级目录</th>
+                                <th> 排序</th>
+                                <th> 显示/隐藏</th>
+                                <th> 操作</th>
+                            </tr>
+                        </thead>
+                        <tbody tt-repeat="item in cat.specs">
+                        {% raw %}
+                            <tr data-id="{{item.id}}">
+                                <td>{{item.spec_name}}</td>
+                                <td>{{cat.cat_name}} </td>
+                                <td>{{item.sort}} </td>
+                                <td>{{item.is_show}}</td>
+                                <td>
+                                    <a href="/cats/{{item.id}}"><i class="fa fa-eye"></i></a>
+                                    <a href="/cats/{{item.id}}/edit" tt-click="editSpec"><i class="fa fa-edit"></i></a>
+                                    <a href="javascript:;" tt-click="deleteSpecDialog"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>  
+                        {% endraw %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="dataTables_paginate paging_bootstrap pagination">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/cats/index'], function(a, b, catController){
+            catController.initDetail();
+        });
+    });
+</script>
+</div>
+{% endblock %}

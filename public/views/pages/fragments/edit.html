@@ -1,0 +1,81 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<div tt-controller="app/modules/index" tt-init="initEdit">
+    <!-- page heading start-->
+    <div class="page-heading">
+        <h3>
+        内容管理
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">新增模块</a>
+            </li>
+            <li class="active"> 新增模块 </li>
+        </ul>
+    </div>
+    <!-- page heading end-->
+    <!--body wrapper start-->
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        新增模块
+                        <span class="tools pull-right">
+                        <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="form">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 control-label">板块名称</label>
+                                    <div class="col-md-6">
+                                        <div class="iconic-input">
+                                            <i class="fa fa-book"></i>
+                                            <input type="text" class="form-control" placeholder="板块名称, 例如首页幻灯片，招聘模块" tt-model="module.name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 control-label">板块类型</label>
+                                    <div class="col-md-6">
+                                        <div class="iconic-input">
+                                            <i class="fa fa-leaf"></i>
+                                            <input type="text" class="form-control" placeholder="板块类型, 板块的识别名字，用字母或者数字表示" tt-model="module.type">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 control-label">显示/隐藏</label>
+                                    <div class="col-md-2">
+                                        <div class="iconic-input">
+                                            <input tabindex="1" type="checkbox"  name="显示" tt-model="module.is_show">
+                                            <label>显示 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label"></label>
+                                <div class="col-md-6">
+                                    <a class="btn btn-primary right" tt-click="updateModule">确定</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--body wrapper end-->
+    <!--footer section start-->
+    <script>
+        requirejs(['/js/common.js'], function (common) {
+            requirejs(['modernizr','bootstrap', 'app/modules/index'], function(a, b, moduleController){
+                moduleController.initEdit();
+            });
+        });
+    </script>
+</div>
+{% endblock %}

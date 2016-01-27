@@ -1,0 +1,108 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+
+<!--dynamic table-->
+<link href="/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+<link href="/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+<link rel="stylesheet" href="/lib/data-tables/DT_bootstrap.css" />
+
+<div tt-controller="app/orders/index" tt-init="initList">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    订单管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">订单管理</a>
+        </li>
+        <li class="active"> 订单列表 </li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    订单列表
+                    <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a id="editable-sample_new" class="btn btn-primary" href="/orders/new">
+                            新增订单 <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">更多 <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#"> 打印 </a></li>
+                                <li><a href="#"> 另存为PDF </a></li>
+                                <li><a href="#"> 导出到Excel </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="table  table-hover general-table" id="userList">
+                        <thead>
+                            <tr>
+                                <th> 订单编号</th>
+                                <th> 总金额</th>
+                                <th> 订单状态</th>
+                                <th> 付款状态</th>
+                                <th> 用户</th>
+                                <th> 创建时间</th>
+                                <th> 更新时间</th>
+                                <th> 操作</th>
+                            </tr>
+                        </thead>
+                        <tbody tt-repeat="item in orders">
+                        {% raw %}
+                            <tr data-id="{{item.id}}">
+                                <td><a href="/orders/{{item.id}}">{{item.sn}}</a></td>
+                                <td>{{item.amount}}</td>
+                                <td><span class="label label-success label-mini">{{item.status}}</span></td>
+                                <td><span class="label label-info label-mini">{{item.payment}}</span></td>
+                                <td>{{item.user_id}}</td>
+                                <td>{{item.created}}</td>
+                                <td>{{item.modified}}</td>
+                                <td>
+                                    <a href="/orders/{{item.id}}"><i class="fa fa-eye"></i></a>
+                                    <a href="/orders/{{item.id}}/edit"><i class="fa fa-edit"></i></a>
+                                    <a href="javascript:;" tt-click="deleteOrder"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>  
+                        {% endraw %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="dataTables_paginate paging_bootstrap pagination">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/orders/index'], function(a, b, orderController){
+            orderController.initList();
+        });
+    });
+</script>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/lib/bootstrap-fileinput/fileinput.css" />
+
+<div tt-controller="app/media/index" tt-init="initList">
+    <!-- page heading start-->
+    <div class="page-heading">
+        <h3>
+        媒资管理
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">媒资管理</a>
+            </li>
+            <li class="active"> 图片管理 </li>
+        </ul>
+    </div>
+    <!-- page heading end-->
+    <!--body wrapper start-->
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        图片管理器
+                        <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <ul id="filters" class="media-filter">
+                            <li><a href="#" data-filter="*"> 所有</a></li>
+                            <li><a href="#" data-filter=".images">图片</a></li>
+                            <li><a href="#" data-filter=".audio">音频</a></li>
+                            <li><a href="#" data-filter=".video">视频</a></li>
+                            <li><a href="#" data-filter=".docs">文件</a></li>
+                        </ul>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-square-o"></i> 全选</button>
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash-o"></i> 删除</button>
+                            <a href="#myModal" data-toggle="modal" type="button" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> 上传</a>
+                        </div>
+                        <div id="gallery" class="media-gal isotope" tt-repeat="item in media">
+                            {% raw %}
+                                <div class="{{item.type}} item  isotope-item">
+                                    <img src="{{item.preview}}" alt="{{item.name}}" data-path="{{item.path}}">
+                                    <p>{{item.name}} </p>
+                                </div>
+                            {% endraw %}   
+                        </div>
+                        <div class="col-md-12 text-center clearfix">
+                            <ul class="pagination"></ul>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 1000px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title">上传文件</h4>
+                                    </div>
+                                    <div class="modal-body row">
+                                        <div class="form-group">
+                                            <input id="input-repl-2" name="files" type="file" class="file-loading" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'isotope', 'app/media/index'], function(a, b, isotope, mediaController){
+            mediaController.initList();
+            $(function() {
+                
+
+                // filter items when filter link is clicked
+               
+            });
+        });
+    });
+</script>
+{% endblock %}

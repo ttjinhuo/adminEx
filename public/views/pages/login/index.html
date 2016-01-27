@@ -1,0 +1,57 @@
+{% extends '../layouts/single.html' %}
+
+{% block content %}
+
+    <form class="form-signin" action="/login" method="post">
+        <div class="form-signin-heading text-center">
+            <h1 class="sign-title">登录</h1>
+            <img src="images/login-logo.png" alt=""/>
+        </div>
+        <div class="login-wrap">
+            <input type="text" class="form-control" placeholder="User ID" name="un" value="{{ username }}" autofocus>
+            <input type="password" class="form-control" name="pw" placeholder="Password">
+
+            <button class="btn btn-lg btn-login btn-block" type="submit">
+                <i class="fa fa-check"></i>
+            </button>
+
+            <div class="registration">
+                没有账号?
+                <a class="" href="/register">
+                    立即注册
+                </a>
+            </div>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> 记住我
+                <span class="pull-right">
+                    <a data-toggle="modal" href="#myModal"> 忘记密码?</a>
+
+                </span>
+            </label>
+
+        </div>
+
+        <!-- Modal -->
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">忘记密码 ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>请输入邮箱，以重新获取密码.</p>
+                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                        <button class="btn btn-primary" type="button">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+
+    </form>
+{% endblock %}

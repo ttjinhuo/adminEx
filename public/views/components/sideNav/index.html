@@ -1,0 +1,73 @@
+<div class="left-side sticky-left-side">
+    <!--logo and iconic logo start-->
+    <div class="logo">
+        <a href="/"><img src="/images/logo.png" alt=""></a>
+    </div>
+    <div class="logo-icon text-center">
+        <a href="/"><img src="/images/logo_icon.png" alt=""></a>
+    </div>
+    <!--logo and iconic logo end-->
+    <div class="left-side-inner">
+        <!-- visible to small devices only -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">
+            <div class="media logged-user">
+                <img alt="" src="/images/photos/user-avatar.png" class="media-object">
+                <div class="media-body">
+                    <h4><a href="#">管理员</a></h4>
+                    <span>上次登录时间: </span>
+                </div>
+            </div>
+            <h5 class="left-nav-title">账户设置</h5>
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="#"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+            </ul>
+        </div>
+        <!--sidebar nav start-->
+        <ul class="nav nav-pills nav-stacked custom-nav" id="sideNav">
+            <li class="active" data-menu="main"><a href="/"><i class="fa fa-home"></i> <span>控制台</span></a></li>
+            <li class="menu-list" data-menu="user"><a href=""><i class="fa fa-laptop"></i> <span>用户管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="list"><a href="/users"> 用户列表</a></li>
+                </ul>
+            </li>
+            <li class="menu-list" data-menu="good"><a href=""><i class="fa fa-book"></i> <span>商品管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="list"><a href="/goods"> 商品列表</a></li>
+                    <li data-submenu="new"><a href="/goods/new"> 新增商品</a></li>
+                    <li data-submenu="cat"><a href="/cats"> 商品类目</a></li>
+                </ul>
+            </li>
+            <li class="menu-list" data-menu="supplier"><a href=""><i class="fa fa-tasks"></i> <span>供应商管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="list"><a href="/suppliers"> 供应商列表</a></li>
+                    <li data-submenu="new"><a href="/suppliers/new"> 新增供应商</a></li>
+                </ul>
+            </li>
+            <li class="menu-list" data-menu="order"><a href=""><i class="fa fa-bar-chart-o"></i> <span>订单管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="list"><a href="/orders"> 订单列表</a></li>
+                </ul>
+            </li>
+            <li class="menu-list"  data-menu="cms"><a href="/modules"><i class="fa fa-file-text"></i> <span>内容管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="list"><a href="/modules">模块管理</a></li>
+                    <li data-submenu="new"><a href="/modules/new">新增版块</a></li>
+                </ul>
+            </li>
+            <li class="menu-list" data-menu="media"><a href=""><i class="fa fa-camera"></i> <span>媒资管理</span></a>
+                <ul class="sub-menu-list">
+                    <li data-submenu="lib"><a href="/media"> 图片库</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!--sidebar nav end-->
+    </div>
+</div>
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['comp/sideNav/index'])
+        //requirejs(['modernizr','bootstrap', 'easypiechart','app/init']);
+    });
+</script>

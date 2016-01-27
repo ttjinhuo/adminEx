@@ -1,0 +1,183 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<div tt-controller="app/goods/index" tt-init="initDetail">
+<!-- page heading start-->
+<div class="page-heading">
+    <h3>
+    商品管理
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">商品详情</a>
+        </li>
+        <li class="active" tt-bind="good.name"></li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-pic text-center">
+                                <img alt="" src="" tt-src="good.default_image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <h3>基本信息</h3>
+                            <ul class="p-info">
+                                <li>
+                                    <div class="title">品牌</div>
+                                    <div class="desk" tt-bind="good.brand_name"></div>
+                                </li>
+                                <li>
+                                    <div class="title">品类</div>
+                                    <div class="desk" tt-bind="good.cat.cat_name"></div>
+                                </li>
+                                <li>
+                                    <div class="title">种类</div>
+                                    <div class="desk" tt-bind="good.spec.spec_name"></div>
+                                </li>
+                                <li>
+                                    <div class="title">单位</div>
+                                    <div class="desk" tt-bind="good.unit"></div>
+                                </li>
+                                <li>
+                                    <div class="title">库存</div>
+                                    <div class="desk" tt-bind="good.stock"></div>
+                                </li>
+                                <li>
+                                    <div class="title">供应商</div>
+                                    <div class="desk" tt-bind="good.supplier.name"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <h3>供应商信息</h3>
+                            <ul class="p-info">
+                                <li>
+                                    <div class="title">供应商名称</div>
+                                    <div class="desk" tt-bind="good.supplier.name"></div>
+                                </li>
+                                <li>
+                                    <div class="title">供应商地址</div>
+                                    <div class="desk" tt-bind="good.supplier.location"></div>
+                                </li>
+                                <li>
+                                    <div class="title">供应商联系方式</div>
+                                    <div class="desk" tt-bind="good.supplier.phone"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body p-states">
+                            <div class="summary pull-left">
+                                <h4>总<span>销量</span></h4>
+                                <span>Monthly Summary</span>
+                                <h3>$ 5,600</h3>
+                            </div>
+                            <div id="expense" class="chart-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body p-states green-box">
+                            <div class="summary pull-left">
+                                <h4>Product <span>refund</span></h4>
+                                <span>Monthly Summary</span>
+                                <h3>160</h3>
+                            </div>
+                            <div id="pro-refund" class="chart-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body p-states">
+                            <div class="summary pull-left">
+                                <h4>Total <span>Earning</span></h4>
+                                <span>Monthly Summary</span>
+                                <h3>$ 51,2600</h3>
+                            </div>
+                            <div id="expense2" class="chart-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-desk">
+                                <h1 tt-bind="good.name"></h1>
+                                <span class="designation" ></span>
+                                <p tt-bind="good.description">
+                               
+                                </p>
+                                <div class="blog-tags">
+                                    标签 
+                                    <span tt-repeat="item in good.tags">
+                                        {% raw %}
+                                        <a href="#">{{item.name}}</a>
+                                        {% endraw %}
+                                    </span>
+                                    <div class="pull-right tag-social">
+                                        <a href="#" class="btn btn-share pull-right" tt-click="testClick">Share</a>
+                                        <ul class="pull-right">
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--body wrapper end-->
+<!--footer section start-->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr','bootstrap', 'app/goods/index'], function(a, b, goodController){
+            goodController.initDetail();
+        });
+    });
+</script>
+</div>
+{% endblock %}

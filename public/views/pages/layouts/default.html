@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "./include/head.html" ignore missing %}
+
+  {% set now = '2015' %}
+  <title>{% block title -%}{%- endblock %}</title>
+
+  <!--common-->
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style-responsive.css" rel="stylesheet">
+
+  {% block stylesheets %}{% endblock %}
+  <script src="/js/lib/require.js"></script>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    {% include "../../components/sideNav/index.html" ignore missing %}
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        {% include "../../components/header/index.html" ignore missing %}
+        <!-- header section end-->
+        {% block content %}{% endblock %}
+        
+        {% include "./include/foot.html" ignore missing %}
+    </div>
+    <!-- main content end-->
+</section>
+</body>
+</html>
+
+
+

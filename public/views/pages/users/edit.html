@@ -1,0 +1,125 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap-fileupload.min.css" /> -->
+<link rel="stylesheet" type="text/css" href="/lib/bootstrap-fileinput/fileinput.css" />
+<style>.file-thumbnail-footer {display: none;}</style>
+
+
+<div tt-controller="app/goods/index" tt-init="initEdit">
+    <!-- page heading start-->
+    <div class="page-heading">
+        <h3>
+        用户管理
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">用户管理</a>
+            </li>
+            <li class="active"> 编辑用户 </li>
+        </ul>
+    </div>
+    <!-- page heading end-->
+    <!--body wrapper start-->
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        编辑用户
+                    </header>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">用户名</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" class="form-control" placeholder="用户名" tt-model="user.username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">邮箱</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-home"></i>
+                                        <input type="text" class="form-control" placeholder="邮箱" tt-model="user.email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">电话</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-phone"></i>
+                                        <input type="text" class="form-control" placeholder="电话" tt-model="user.phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">昵称</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" class="form-control" placeholder="昵称" tt-model="user.nickname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">角色</label>
+                                <div class="col-md-2">
+                                    <div class="flat-green">
+                                        <div class="radio ">
+                                            <input tabindex="1" type="radio"  name="角色" tt-model="user.role" value="2">
+                                            <label>普通用户 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="flat-green">
+                                        <div class="radio ">
+                                            <input tabindex="2" type="radio"  name="角色"  tt-model="user.role" value="3">
+                                            <label>供应商 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">头像</label>
+                                <div class="col-md-6">
+                                    <input id="avatar" name="files" type="file" multiple>    
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label"></label>
+                                <div class="col-md-6">
+                                    <span class="btn btn-primary right" tt-click="updateUser">提交</span>
+                                </div>
+                            </div>
+                        
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<!--body wrapper end-->
+</div>
+<!--footer section start-->
+<!-- <script type="text/javascript" src="/lib/bootstrap-fileupload.min.js"></script> -->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr', 'jquery', 'bootstrap', 'iCheck', 'fileupload', 'app/users/index'],
+            function(modernizr, $, bootstrap, iCheck, fileUpload, userController){
+                // $(function(){
+                //     $('.flat-green input').iCheck({
+                //         checkboxClass: 'icheckbox_flat-green',
+                //         radioClass: 'iradio_flat-green'
+                //     });
+                // });
+                userController.initEdit();
+        });
+    });
+</script>
+{% endblock %}

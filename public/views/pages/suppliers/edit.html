@@ -1,0 +1,126 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/lib/bootstrap-fileinput/fileinput.css" />
+<style>.file-thumbnail-footer {display: none;}</style>
+
+<div tt-controller="app/suppliers/index" tt-init="initEdit">
+    <!-- page heading start-->
+    <div class="page-heading">
+        <h3>
+        供应商管理
+        </h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">供应商管理</a>
+            </li>
+            <li class="active"> 编辑供应商 </li>
+        </ul>
+    </div>
+    <!-- page heading end-->
+    <!--body wrapper start-->
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        编辑供应商
+                    </header>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">供应商名称</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" class="form-control" placeholder="供应商名称" tt-model="supplier.name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">联系方式</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-phone"></i>
+                                        <input type="text" class="form-control" placeholder="联系方式" tt-model="supplier.phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">联系地址</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-home"></i>
+                                        <input type="text" class="form-control" placeholder="地址" tt-model="supplier.location">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">经营范围</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-leaf"></i>
+                                        <input type="text" class="form-control" placeholder="经营范围" tt-model="supplier.scope">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">营业规模</label>
+                                <div class="col-md-6">
+                                    <div class="iconic-input">
+                                        <i class="fa fa-money"></i>
+                                        <input type="text" class="form-control" placeholder="营业规模" tt-model="supplier.scale">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">类型</label>
+                                <div class="col-md-2">
+                                    <div class="flat-green">
+                                        <div class="radio ">
+                                            <input tabindex="1" type="radio"  name="角色" tt-model="user.role" value="2">
+                                            <label>供应商 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="flat-green">
+                                        <div class="radio ">
+                                            <input tabindex="2" type="radio"  name="角色"  tt-model="user.role" value="3">
+                                            <label>商店 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group last">
+                                <label class="control-label col-md-2">供应商LOGO</label>
+                                <div class="col-md-6">
+                                    <input id="supplierLogo" name="files" type="file">  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label"></label>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary right" tt-click="updateSupplier">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<!--body wrapper end-->
+</div>
+<!--footer section start-->
+<!-- <script type="text/javascript" src="/lib/bootstrap-fileupload.min.js"></script> -->
+<script>
+    requirejs(['/js/common.js'], function (common) {
+        requirejs(['modernizr', 'jquery', 'bootstrap', 'iCheck', 'fileupload', 'app/suppliers/index'],
+            function(modernizr, $, bootstrap, iCheck, fileUpload, controller){
+                controller.initEdit();
+        });
+    });
+</script>
+{% endblock %}
